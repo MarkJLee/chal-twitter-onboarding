@@ -1,2 +1,3 @@
 # chal-twitter-onboarding
-twitter onboarding flow
+
+Construct the Twitter onboarding flow using Flutter
