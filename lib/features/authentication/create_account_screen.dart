@@ -193,21 +193,29 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
             ),
             GestureDetector(
               onTap: () async {
-                DateTime? selectedDate =
-                    await showCupertinoModalPopup<DateTime>(
+                DateTime? selectedDate = await showCupertinoModalPopup(
                   context: context,
-                  builder: (BuildContext context) => SizedBox(
-                    height: MediaQuery.of(context).size.height / 3,
-                    child: CupertinoDatePicker(
-                      mode: CupertinoDatePickerMode.date,
-                      onDateTimeChanged: (DateTime dateTime) {
-                        setState(() {
-                          _birth = dateTime;
-                          _updateDateController();
-                          _showAgeDescription = true;
-                        });
-                      },
-                    ),
+                  barrierColor: CupertinoColors.white.withOpacity(0.01),
+                  builder: (BuildContext context) => Column(
+                    children: [
+                      const Spacer(),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 3,
+                        child: Container(
+                          color: CupertinoColors.white,
+                          child: CupertinoDatePicker(
+                            mode: CupertinoDatePickerMode.date,
+                            onDateTimeChanged: (DateTime dateTime) {
+                              setState(() {
+                                _birth = dateTime;
+                                _updateDateController();
+                                _showAgeDescription = true;
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 );
                 if (selectedDate != null) {
@@ -264,33 +272,40 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   ),
                 ),
               ),
-            const Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                CupertinoButton(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 5,
-                  ),
-                  disabledColor: CupertinoColors.systemGrey,
-                  borderRadius: BorderRadius.circular(30),
-                  color: CupertinoColors.black,
-                  onPressed: _isValid() ? () {} : null,
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Next",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: CupertinoColors.white,
+            // const Spacer(),
+            const SizedBox(
+                height:
+                    20), // spacer 대신 사용, DatePicker에 따라서 같이 올라오는 버튼을 만들고자하면?
+            Padding(
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  CupertinoButton(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 5,
+                    ),
+                    disabledColor: CupertinoColors.systemGrey,
+                    borderRadius: BorderRadius.circular(30),
+                    color: CupertinoColors.black,
+                    onPressed: _isValid() ? () {} : null,
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Next",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: CupertinoColors.white,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             const SizedBox(
               height: 40,
