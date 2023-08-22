@@ -3,6 +3,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'create_account_screen.dart';
+
 class InitialScreen extends StatelessWidget {
   const InitialScreen({super.key});
 
@@ -129,13 +131,14 @@ class InitialScreen extends StatelessWidget {
               CupertinoButton(
                 borderRadius: BorderRadius.circular(30),
                 color: Colors.black,
-                onPressed: () {},
+                onPressed: () => Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                      builder: (context) => const CreateAccountScreen()),
+                ),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      width: 10,
-                    ),
                     Text(
                       "Create account",
                       style: TextStyle(
