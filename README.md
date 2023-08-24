@@ -62,3 +62,7 @@ This project aims to recreate the Twitter onboarding experience using Flutter. T
 
 -   Flutter SDK
 -   Dart
+
+### Screenshots
+
+[mobbin.com, Twitter](https://mobbin.com/apps/twitter-ios-578b626b-f3c2-451f-bb56-592afde35f5b)
