@@ -1,4 +1,5 @@
 import 'package:chal_twitter_onboarding/features/authentication/customize_experience_screen.dart';
+import 'package:chal_twitter_onboarding/features/authentication/widgets/twitter_navigation_bar_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -18,8 +19,8 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   String _email = '';
   DateTime? _birth;
 
-  bool _isComplete = false;
-  bool _result = false;
+  bool _isComplete = false; // Sign up 버튼이 활성화 되는 조건
+  bool _result = false; // CustomizeExperienceScreen 에서 돌아온 결과
 
   // 모든 필드 조건이 맞을 때만 버튼 활성화
   bool _isValid() {
@@ -93,30 +94,31 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         }
       },
       child: CupertinoPageScaffold(
-        navigationBar: CupertinoNavigationBar(
-          border: const Border(bottom: BorderSide.none),
-          backgroundColor: CupertinoColors.white,
-          middle: const FaIcon(
-            FontAwesomeIcons.twitter,
-            size: 30,
-          ),
-          leading: Column(
+        navigationBar: TwitterNavigationBarWidget(
+          leadingWidget: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               GestureDetector(
                 onTap: () {
                   Navigator.pop(context);
                 },
-                child: const Text(
-                  'Cancel',
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-                ),
+                child: _isComplete
+                    ? const FaIcon(
+                        FontAwesomeIcons.arrowLeft,
+                        color: CupertinoColors.black,
+                        size: 22,
+                      )
+                    : const Text(
+                        'Cancel',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
               ),
             ],
           ),
-        ),
+        ).build(
+            context), // .build(context) 를 통해 CupertinoNavigationBar 인스턴스를 직접 할당!
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 30,

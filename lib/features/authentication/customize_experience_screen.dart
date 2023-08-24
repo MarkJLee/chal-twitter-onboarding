@@ -1,3 +1,4 @@
+import 'package:chal_twitter_onboarding/features/authentication/widgets/twitter_navigation_bar_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -16,14 +17,8 @@ class _CustomizeExperienceScreenState extends State<CustomizeExperienceScreen> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        border: const Border(bottom: BorderSide.none),
-        backgroundColor: CupertinoColors.white,
-        middle: const FaIcon(
-          FontAwesomeIcons.twitter,
-          size: 30,
-        ),
-        leading: Column(
+      navigationBar: TwitterNavigationBarWidget(
+        leadingWidget: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             GestureDetector(
@@ -38,7 +33,7 @@ class _CustomizeExperienceScreenState extends State<CustomizeExperienceScreen> {
             ),
           ],
         ),
-      ),
+      ).build(context),
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 30,
