@@ -1,4 +1,6 @@
+import 'package:chal_twitter_onboarding/features/authentication/confirmation_code_screen.dart';
 import 'package:chal_twitter_onboarding/features/authentication/customize_experience_screen.dart';
+import 'package:chal_twitter_onboarding/features/authentication/widgets/green_check_mark_widget.dart';
 import 'package:chal_twitter_onboarding/features/authentication/widgets/twitter_navigation_bar_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
@@ -170,18 +172,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       color: CupertinoColors.systemCyan,
                     ),
                     suffix: _isValidName(_name)
-                        ? Container(
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 38, 154, 67),
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            padding: const EdgeInsets.all(5),
-                            child: const Icon(
-                              CupertinoIcons.check_mark,
-                              color: CupertinoColors.white,
-                              size: 18,
-                            ),
-                          )
+                        ? const GreenCheckMarkWidget()
                         : null,
                     onChanged: (value) {
                       setState(() {
@@ -221,18 +212,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       color: CupertinoColors.systemCyan,
                     ),
                     suffix: _isValidEmail(_email)
-                        ? Container(
-                            decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 38, 154, 67),
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            padding: const EdgeInsets.all(5),
-                            child: const Icon(
-                              CupertinoIcons.check_mark,
-                              color: CupertinoColors.white,
-                              size: 18,
-                            ),
-                          )
+                        ? const GreenCheckMarkWidget()
                         : null,
                     onChanged: (value) {
                       setState(() {
@@ -306,18 +286,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         color: CupertinoColors.systemCyan,
                       ),
                       suffix: _isValidBirth(_birth)
-                          ? Container(
-                              decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 38, 154, 67),
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              padding: const EdgeInsets.all(5),
-                              child: const Icon(
-                                CupertinoIcons.check_mark,
-                                color: CupertinoColors.white,
-                                size: 18,
-                              ),
-                            )
+                          ? const GreenCheckMarkWidget()
                           : null,
                     ),
                   ),
@@ -433,7 +402,15 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     CupertinoButton(
                       borderRadius: BorderRadius.circular(30),
                       color: CupertinoColors.systemBlue,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                            builder: (context) =>
+                                ConfirmationCodeScreen(email: _email),
+                          ),
+                        );
+                      },
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
