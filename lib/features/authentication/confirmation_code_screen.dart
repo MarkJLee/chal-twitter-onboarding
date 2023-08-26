@@ -1,3 +1,4 @@
+import 'package:chal_twitter_onboarding/features/authentication/password_screen.dart';
 import 'package:chal_twitter_onboarding/features/authentication/widgets/green_check_mark_widget.dart';
 import 'package:chal_twitter_onboarding/features/authentication/widgets/twitter_navigation_bar_widget.dart';
 import 'package:chal_twitter_onboarding/features/authentication/widgets/verification_code_input.dart';
@@ -27,7 +28,7 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
 
     await Navigator.of(context).push(
       CupertinoPageRoute(
-        builder: (context) => Container(),
+        builder: (context) => const PasswordScreen(),
       ),
     );
 
