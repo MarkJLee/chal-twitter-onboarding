@@ -1,3 +1,4 @@
+import 'package:chal_twitter_onboarding/features/authentication/main_interests_screen.dart';
 import 'package:chal_twitter_onboarding/features/authentication/widgets/green_check_mark_widget.dart';
 import 'package:chal_twitter_onboarding/features/authentication/widgets/twitter_navigation_bar_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -123,7 +124,8 @@ class _PasswordScreenState extends State<PasswordScreen> {
               onPressed: _isValidPassword(_password)
                   ? () => Navigator.push(
                         context,
-                        CupertinoPageRoute(builder: (context) => Container()),
+                        CupertinoPageRoute(
+                            builder: (context) => const MainInterestsScreen()),
                       )
                   : null,
               child: const Row(
