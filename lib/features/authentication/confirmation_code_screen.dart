@@ -19,6 +19,24 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
   final Uri _url = Uri.parse("https://emailsent.devinforall.repl.co");
   late bool _isConfimed = false;
   final _tapRecognizer = TapGestureRecognizer();
+  final _verificationCode = "056022";
+  bool _isLoading = false;
+
+  Future<void> _navigateToNextScreen() async {
+    await Future.delayed(const Duration(seconds: 1));
+
+    await Navigator.of(context).push(
+      CupertinoPageRoute(
+        builder: (context) => Container(),
+      ),
+    );
+
+    if (mounted) {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 
   @override
   void dispose() {
@@ -79,7 +97,7 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
             ),
             VerificationCodeInput(
               onCompleted: (String code) {
-                if (code == '056022') {
+                if (code == _verificationCode) {
                   setState(() {
                     _isConfimed = true;
                   });
@@ -129,25 +147,32 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
               borderRadius: BorderRadius.circular(30),
               color: CupertinoColors.black,
               disabledColor: CupertinoColors.systemGrey,
-              onPressed: _isConfimed
-                  ? () {
-                      Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => Container(),
-                        ),
-                      );
+              onPressed: _isConfimed && !_isLoading
+                  ? () async {
+                      setState(() {
+                        _isLoading = true;
+                      });
+                      _navigateToNextScreen();
                     }
                   : null,
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    "Next",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: CupertinoColors.white,
-                    ),
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Opacity(
+                        opacity: _isLoading ? 0.0 : 1.0,
+                        child: const Text(
+                          "Next",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: CupertinoColors.white,
+                          ),
+                        ),
+                      ),
+                      if (_isLoading) const CupertinoActivityIndicator(),
+                    ],
                   ),
                 ],
               ),
