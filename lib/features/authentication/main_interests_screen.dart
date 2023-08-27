@@ -1,3 +1,4 @@
+import 'package:chal_twitter_onboarding/features/authentication/sub_interests_screen.dart';
 import 'package:chal_twitter_onboarding/features/authentication/widgets/twitter_navigation_bar_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -39,10 +40,18 @@ class _MainInterestsScreenState extends State<MainInterestsScreen> {
     _selectedInterests = List.generate(interests.length, (index) => false);
   }
 
-  navigateToSubInterestsScreen() {
+  _navigateToSubInterestsScreen() {
+    List<String> chosenInterests = [];
+    for (int i = 0; i < interests.length; i++) {
+      if (_selectedInterests[i]) {
+        chosenInterests.add(interests[i]);
+      }
+    }
+
     Navigator.of(context).push(
       CupertinoPageRoute(
-        builder: (context) => Container(),
+        builder: (context) =>
+            SubInterestsScreen(selectedInterests: chosenInterests),
       ),
     );
   }
@@ -222,7 +231,7 @@ class _MainInterestsScreenState extends State<MainInterestsScreen> {
                         onPressed: _isCategorySelected()
                             ? () {
                                 Future.delayed(Duration.zero,
-                                    navigateToSubInterestsScreen);
+                                    _navigateToSubInterestsScreen);
                               }
                             : null,
                         child: const Row(
