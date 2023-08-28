@@ -56,7 +56,7 @@ This project aims to recreate the Twitter onboarding experience using Flutter. T
 
 ## Demo Link
 
-[Demo Screen(iPhone 14 Pro Max) for Part 1](https://imgur.com/mKHeTXC)
+[Demo Screen(iPhone 14 Pro Max) for Part 1-2](https://imgur.com/a/1WKtUCZ)
 
 ### Prerequisites
 
@@ -66,3 +66,5 @@ This project aims to recreate the Twitter onboarding experience using Flutter. T
 ### Screenshots
 
 [mobbin.com, Twitter](https://mobbin.com/apps/twitter-ios-578b626b-f3c2-451f-bb56-592afde35f5b)
+
+"I would like to express my gratitude to NomadCoders for providing the challenge problems."
